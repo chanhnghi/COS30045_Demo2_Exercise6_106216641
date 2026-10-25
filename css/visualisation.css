@@ -5,9 +5,20 @@
 .axis-label { fill: #31584d; font-size: 14px; font-weight: 700; }
 .grid line { stroke: #e9f1ec; }
 .grid path { display: none; }
-.histogram-bar { fill: #388a72; }
 .scatter-dot { opacity: .48; cursor: crosshair; }
 .scatter-dot:hover { opacity: 1; }
 .legend text { fill: #33574b; font-size: 13px; }
 .tooltip { pointer-events: none; }
 .tooltip text { fill: #163c32; font-size: 13px; font-weight: 700; }
+
+.axis text, .legend text { fill: #536171; }
+.axis path, .axis line { stroke: #b7c3cf; }
+.axis-label { fill: #334155; }
+.grid line { stroke: #e9eef2; }
+.histogram-bar { cursor: help; }
+.histogram-bar:hover { stroke: #172334; stroke-width: 1.5; }
+.tooltip text { fill: #172334; }
+.axis text, .legend text { font-size: 16px; }
+.axis-label { font-size: 17px; }
+.tooltip text { font-size: 15px; }
+.tooltip-detail { font-weight: 400; }

@@ -15,25 +15,41 @@
 </head>
 <body>
   <main class="shell">
-    <nav class="top-nav" aria-label="Site navigation">
-      <a href="https://github.com/chanhnghi/COS30045_Demo2_Exercise4.3-4.7_106216641">← Demonstration 2 repository</a>
-      <div class="section-links">
-        <a href="#histogram-section">6.1–6.2 Histogram and filters</a>
-        <a href="#scatter-section">6.3–6.4 Scatterplot and tooltip</a>
+    <nav class="site-nav" aria-label="Main navigation">
+      <span class="site-brand">COS30045 / Demo 2</span>
+      <div class="site-nav-links">
+      <a href="../COS30045_Demo2_Exercise4.3-4.7_106216641/hub.html">Home</a>
+      <a href="../COS30045_Demo2_Exercise4.1_106216641/index.html">4.1</a>
+      <a href="../COS30045_Demo2_Exercise4.3-4.7_106216641/index.html">4.3–4.7</a>
+      <a href="../COS30045_Demo2_Exercise5_106216641/index.html">5</a>
+      <a href="index.html" aria-current="page">6</a>
       </div>
     </nav>
     <header class="page-header">
       <p class="eyebrow">Week 6 · Exercise 6</p>
       <h1>Explore the TV dataset</h1>
-      <p>Filter energy consumption by screen technology, then inspect individual TVs in a scatterplot.</p>
+      <p>Explore how screen technology and star rating relate to annual energy use.</p>
     </header>
 
+    <section class="filter-panel" aria-label="Chart filters">
+      <div class="control-group">
+        <span class="control-label">Screen technology</span>
+        <div id="filters_screen" class="filter-list" role="group" aria-label="Filter by screen technology"></div>
+      </div>
+      <div class="control-group star-control">
+        <label class="control-label" for="star-filter">Minimum star rating: <strong id="star-value">All ratings</strong></label>
+        <input id="star-filter" type="range" min="0" max="8" step="0.5" value="0">
+        <div class="range-ends"><span>All</span><span>8 stars</span></div>
+      </div>
+      <button id="reset-filters" class="reset-button" type="button">Reset filters</button>
+      <p id="filter-summary" class="filter-summary" aria-live="polite"></p>
+    </section>
+    <div class="dashboard-grid">
     <section id="histogram-section" class="chart-card" aria-labelledby="histogram-title">
       <p class="eyebrow">Exercises 6.1 and 6.2</p>
       <h2 id="histogram-title">Energy consumption distribution</h2>
-      <p>Each bar counts models in a 200 kWh/year interval. Select a technology to update the bins.</p>
-      <div id="filters_screen" class="filter-list" role="group" aria-label="Filter by screen technology"></div>
-      <p id="filter-summary" class="filter-summary" aria-live="polite"></p>
+      <p>Each 200 kWh/year interval is stacked by LCD, LED, and OLED. Hover a segment to see its count.</p>
+      <div class="tech-legend" aria-label="Screen technology colours"><span><i style="background:#e49c58"></i>LCD</span><span><i style="background:#318e83"></i>LED</span><span><i style="background:#7658a6"></i>OLED</span></div>
       <div id="histogram" class="responsive-svg-container"></div>
     </section>
 
@@ -43,6 +59,7 @@
       <p>Each circle is one TV model. Colour identifies screen technology; hover a circle to see its screen size.</p>
       <div id="scatterplot" class="responsive-svg-container"></div>
     </section>
+    </div>
     <p id="status" class="status" role="status"></p>
   </main>
 </body>

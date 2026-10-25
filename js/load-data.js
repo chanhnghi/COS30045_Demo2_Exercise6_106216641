@@ -11,9 +11,9 @@ d3.csv("data/Ex6_TVdata_withStar.csv", d => ({
   console.log("Week 6 TV data", valid);
   drawHistogram(valid);
   drawScatterplot(valid);
-  populateFilters(valid);
   createTooltip();
   handleMouseEvents();
+  populateFilters(valid);
 }).catch(error => {
   document.querySelector("#status").textContent =
     "The TV CSV could not be loaded. Open this page through VS Code Live Server and reload it.";

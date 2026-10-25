@@ -1,14 +1,12 @@
 // Chart dimensions and colours are shared across the Week 6 visualisations.
 const chartDimensions = {
-  width: 920,
-  height: 500,
-  margin: { top: 38, right: 40, bottom: 70, left: 88 }
+  width: 700,
+  height: 470,
+  margin: { top: 40, right: 24, bottom: 70, left: 82 }
 };
 chartDimensions.innerWidth = chartDimensions.width - chartDimensions.margin.left - chartDimensions.margin.right;
 chartDimensions.innerHeight = chartDimensions.height - chartDimensions.margin.top - chartDimensions.margin.bottom;
 
-const bodyBackgroundColor = "#ffffff";
-const histogramColor = "#388a72";
 const technologyColors = d3.scaleOrdinal()
   .domain(["LCD", "LED", "OLED"])
   .range(["#e49c58", "#318e83", "#7658a6"]);
@@ -17,7 +15,7 @@ const technologyColors = d3.scaleOrdinal()
 const binGenerator = d3.bin()
   .value(d => d.energyConsumption)
   .domain([0, 2800])
-  .thresholds(d3.range(0, 2801, 200));
+  .thresholds(d3.range(200, 2800, 200));
 const xScaleH = d3.scaleLinear().domain([0, 2800]).range([0, chartDimensions.innerWidth]);
 const yScaleH = d3.scaleLinear().range([chartDimensions.innerHeight, 0]);
 

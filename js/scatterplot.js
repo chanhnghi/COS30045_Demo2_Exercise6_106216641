@@ -16,7 +16,7 @@ function drawScatterplot(data) {
 
   innerChart.append("g").attr("class", "grid")
     .call(d3.axisLeft(scatterState.yScale).ticks(6).tickSize(-innerWidth).tickFormat(""));
-  innerChart.selectAll("circle.scatter-dot")
+  scatterState.dots = innerChart.selectAll("circle.scatter-dot")
     .data(data)
     .join("circle")
     .attr("class", "scatter-dot")
@@ -46,4 +46,10 @@ function drawScatterplot(data) {
   legendRows.append("rect").attr("width", 12).attr("height", 12)
     .attr("fill", d => technologyColors(d));
   legendRows.append("text").attr("x", 18).attr("y", 11).text(d => d);
+}
+
+function updateScatterplot(data) {
+  const visible = new Set(data);
+  scatterState.dots.style("display", d => visible.has(d) ? null : "none");
+  if (scatterState.tooltip) scatterState.tooltip.interrupt().style("opacity", 0);
 }

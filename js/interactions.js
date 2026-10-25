@@ -1,3 +1,6 @@
+let activeTechnology = "all";
+let minimumStars = 0;
+
 function populateFilters(data) {
   const controls = d3.select("#filters_screen")
     .selectAll("button.filter-button")
@@ -7,21 +10,42 @@ function populateFilters(data) {
     .attr("type", "button")
     .text(d => d.label)
     .on("click", function (event, selected) {
-      const nextId = selected.isActive ? "all" : selected.id;
-      filterOptions.forEach(option => { option.isActive = option.id === nextId; });
+      activeTechnology = selected.id;
+      filterOptions.forEach(option => { option.isActive = option.id === activeTechnology; });
       controls.classed("is-active", d => d.isActive)
         .attr("aria-pressed", d => String(d.isActive));
-      const updatedData = nextId === "all"
-        ? data
-        : data.filter(d => d.screenTech === nextId);
-      updateHistogram(updatedData);
-      document.querySelector("#filter-summary").textContent =
-        `${updatedData.length.toLocaleString()} models shown · ${nextId === "all" ? "all screen technologies" : nextId}`;
+      applyFilters(data);
     });
   controls.classed("is-active", d => d.isActive)
     .attr("aria-pressed", d => String(d.isActive));
+
+  const slider = document.querySelector("#star-filter");
+  slider.addEventListener("input", () => {
+    minimumStars = Number(slider.value);
+    applyFilters(data);
+  });
+  document.querySelector("#reset-filters").addEventListener("click", () => {
+    activeTechnology = "all";
+    minimumStars = 0;
+    slider.value = "0";
+    filterOptions.forEach(option => { option.isActive = option.id === "all"; });
+    controls.classed("is-active", d => d.isActive)
+      .attr("aria-pressed", d => String(d.isActive));
+    applyFilters(data);
+  });
+  applyFilters(data);
+}
+
+function applyFilters(data) {
+  const filtered = data.filter(tv =>
+    (activeTechnology === "all" || tv.screenTech === activeTechnology)
+    && tv.star >= minimumStars);
+  updateHistogram(filtered, activeTechnology);
+  updateScatterplot(filtered);
+  document.querySelector("#star-value").textContent =
+    minimumStars === 0 ? "All ratings" : `${minimumStars} stars or more`;
   document.querySelector("#filter-summary").textContent =
-    `${data.length.toLocaleString()} models shown · all screen technologies`;
+    `${filtered.length.toLocaleString()} of ${data.length.toLocaleString()} models shown · ${activeTechnology === "all" ? "all technologies" : activeTechnology} · ${minimumStars === 0 ? "all star ratings" : `${minimumStars}+ stars`}`;
 }
 
 function createTooltip() {
@@ -31,16 +55,16 @@ function createTooltip() {
   tooltip.append("rect")
     .attr("width", tooltipSize.width)
     .attr("height", tooltipSize.height)
-    .attr("rx", 9)
-    .attr("fill", "#e2f1e9")
-    .attr("stroke", "#73a991");
+    .attr("rx", 7)
+    .attr("fill", "#ffffff")
+    .attr("stroke", "#cbd5e1");
   tooltip.append("text").attr("class", "tooltip-title").attr("x", 12).attr("y", 23);
   tooltip.append("text").attr("class", "tooltip-detail").attr("x", 12).attr("y", 46);
   scatterState.tooltip = tooltip;
 }
 
 function handleMouseEvents() {
-  scatterState.innerChart.selectAll("circle.scatter-dot")
+  scatterState.dots
     .on("mouseenter", function (event, d) {
       const point = d3.select(this);
       const x = +event.currentTarget.getAttribute("cx");
