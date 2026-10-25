@@ -1,0 +1,13 @@
+.responsive-svg-container { width: 100%; max-width: 980px; margin: 16px auto 0; }
+.responsive-svg-container svg { display: block; width: 100%; height: auto; }
+.axis text { fill: #516b61; font-size: 12px; }
+.axis path, .axis line { stroke: #a8c5b6; }
+.axis-label { fill: #31584d; font-size: 14px; font-weight: 700; }
+.grid line { stroke: #e9f1ec; }
+.grid path { display: none; }
+.histogram-bar { fill: #388a72; }
+.scatter-dot { opacity: .48; cursor: crosshair; }
+.scatter-dot:hover { opacity: 1; }
+.legend text { fill: #33574b; font-size: 13px; }
+.tooltip { pointer-events: none; }
+.tooltip text { fill: #163c32; font-size: 13px; font-weight: 700; }
