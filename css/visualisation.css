@@ -1,24 +1,117 @@
-.responsive-svg-container { width: 100%; max-width: 980px; margin: 16px auto 0; }
-.responsive-svg-container svg { display: block; width: 100%; height: auto; }
-.axis text { fill: #516b61; font-size: 12px; }
-.axis path, .axis line { stroke: #a8c5b6; }
-.axis-label { fill: #31584d; font-size: 14px; font-weight: 700; }
-.grid line { stroke: #e9f1ec; }
-.grid path { display: none; }
-.scatter-dot { opacity: .48; cursor: crosshair; }
-.scatter-dot:hover { opacity: 1; }
-.legend text { fill: #33574b; font-size: 13px; }
-.tooltip { pointer-events: none; }
-.tooltip text { fill: #163c32; font-size: 13px; font-weight: 700; }
+.responsive-svg-container {
+    width: 100%;
+    max-width: 980px;
+    margin: 16px auto 0;
+}
 
-.axis text, .legend text { fill: #536171; }
-.axis path, .axis line { stroke: #b7c3cf; }
-.axis-label { fill: #334155; }
-.grid line { stroke: #e9eef2; }
-.histogram-bar { cursor: help; }
-.histogram-bar:hover { stroke: #172334; stroke-width: 1.5; }
-.tooltip text { fill: #172334; }
-.axis text, .legend text { font-size: 16px; }
-.axis-label { font-size: 17px; }
-.tooltip text { font-size: 15px; }
-.tooltip-detail { font-weight: 400; }
+.responsive-svg-container svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.axis text {
+    fill: #516b61;
+    font-size: 12px;
+}
+
+.axis path,
+.axis line {
+    stroke: #a8c5b6;
+}
+
+.axis-label {
+    fill: #31584d;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.grid line {
+    stroke: #e9f1ec;
+}
+
+.grid path {
+    display: none;
+}
+
+.legend text {
+    fill: #33574b;
+    font-size: 13px;
+}
+
+.tooltip {
+    pointer-events: none;
+    transition: opacity 140ms ease;
+}
+
+.tooltip-hidden,
+.scatter-dot.is-hidden {
+    display: none;
+}
+
+.tooltip-faded {
+    opacity: 0;
+}
+
+.tooltip text {
+    fill: #163c32;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.axis text,
+.legend text {
+    fill: #536171;
+}
+
+.axis path,
+.axis line {
+    stroke: #b7c3cf;
+}
+
+.axis-label {
+    fill: #334155;
+}
+
+.grid line {
+    stroke: #e9eef2;
+}
+
+.histogram-bar {
+    cursor: help;
+}
+
+.histogram-bar:hover {
+    stroke: #172334;
+    stroke-width: 1.5;
+}
+
+.scatter-dot {
+    opacity: .48;
+    cursor: crosshair;
+}
+
+.scatter-dot:hover {
+    opacity: 1;
+}
+
+.tooltip text {
+    fill: #172334;
+}
+
+.axis text,
+.legend text {
+    font-size: 16px;
+}
+
+.axis-label {
+    font-size: 17px;
+}
+
+.tooltip text {
+    font-size: 15px;
+}
+
+.tooltip-detail {
+    font-weight: 400;
+}

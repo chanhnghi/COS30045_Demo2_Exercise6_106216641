@@ -1,4 +1,4 @@
-// Chart dimensions and colours are shared across the Week 6 visualisations.
+// Dimensions and colours shared by the Week 6 charts.
 const chartDimensions = {
   width: 700,
   height: 470,
@@ -26,6 +26,5 @@ const filterOptions = [
   { id: "OLED", label: "OLED", isActive: false }
 ];
 
-// The scatterplot and tooltip code both need these references.
 const scatterState = { innerChart: null, xScale: null, yScale: null, tooltip: null };
 const tooltipSize = { width: 218, height: 70 };

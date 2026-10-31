@@ -50,6 +50,6 @@ function drawScatterplot(data) {
 
 function updateScatterplot(data) {
   const visible = new Set(data);
-  scatterState.dots.style("display", d => visible.has(d) ? null : "none");
-  if (scatterState.tooltip) scatterState.tooltip.interrupt().style("opacity", 0);
+  scatterState.dots.classed("is-hidden", d => !visible.has(d));
+  if (scatterState.tooltip) scatterState.tooltip.classed("tooltip-faded", true);
 }

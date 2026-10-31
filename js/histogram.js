@@ -28,8 +28,7 @@ function drawHistogram(data) {
     .attr("text-anchor", "middle").text("Number of TV models");
 
   histogramTooltip = innerChart.append("g")
-    .attr("class", "tooltip")
-    .style("display", "none");
+    .attr("class", "tooltip tooltip-hidden");
   histogramTooltip.append("rect")
     .attr("width", 260).attr("height", 72).attr("rx", 7)
     .attr("fill", "white").attr("stroke", "#cbd5e1");
@@ -67,10 +66,10 @@ function updateHistogram(data, selectedTechnology = "all") {
     const x = Math.max(0, Math.min(xScaleH(d.x0) + 12, chartWidth - 260));
     const y = Math.max(0, Math.min(yScaleH(d.top) - 80, chartHeight - 72));
     histogramTooltip.attr("transform", `translate(${x},${y})`)
-      .style("display", null).raise();
+      .classed("tooltip-hidden", false).raise();
     histogramTooltip.select(".tooltip-title")
       .text(`${d.tech} · ${d.count.toLocaleString()} TV models`);
     histogramTooltip.select(".tooltip-detail")
       .text(`${d.x0}–${d.x1} kWh/year`);
-  }).on("mouseleave", () => histogramTooltip.style("display", "none"));
+  }).on("mouseleave", () => histogramTooltip.classed("tooltip-hidden", true));
 }

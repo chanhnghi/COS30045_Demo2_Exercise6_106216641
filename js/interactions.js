@@ -50,8 +50,7 @@ function applyFilters(data) {
 
 function createTooltip() {
   const tooltip = scatterState.innerChart.append("g")
-    .attr("class", "tooltip")
-    .style("opacity", 0);
+    .attr("class", "tooltip tooltip-faded");
   tooltip.append("rect")
     .attr("width", tooltipSize.width)
     .attr("height", tooltipSize.height)
@@ -79,10 +78,10 @@ function handleMouseEvents() {
         .text(`${d.brand} · ${d.star} stars · ${d.energyConsumption} kWh/yr`);
       scatterState.tooltip.raise()
         .attr("transform", `translate(${tooltipX},${tooltipY})`)
-        .interrupt().transition().duration(140).style("opacity", 1);
+        .classed("tooltip-faded", false);
     })
     .on("mouseleave", function () {
       d3.select(this).attr("r", 3.2).attr("opacity", null);
-      scatterState.tooltip.interrupt().transition().duration(130).style("opacity", 0);
+      scatterState.tooltip.classed("tooltip-faded", true);
     });
 }
