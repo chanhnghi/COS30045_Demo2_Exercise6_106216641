@@ -348,9 +348,17 @@ h2 {
     border-radius: 2px;
 }
 
-.tech-legend .legend-lcd { background: #e49c58; }
-.tech-legend .legend-led { background: #318e83; }
-.tech-legend .legend-oled { background: #7658a6; }
+.tech-legend .legend-lcd {
+    background: #e49c58;
+}
+
+.tech-legend .legend-led {
+    background: #318e83;
+}
+
+.tech-legend .legend-oled {
+    background: #7658a6;
+}
 
 @media (max-width: 1100px) {
     .filter-panel {
